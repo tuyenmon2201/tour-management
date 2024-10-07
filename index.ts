@@ -11,7 +11,9 @@ import { routesClient } from "./routes/client/index.route";
 const app: Express = express();
 const port: number | string = process.env.PORT || 3003;
 
-app.set("views", "./views");
+app.use(express.static("public"));
+
+app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
 
 routesClient(app);
