@@ -45,8 +45,25 @@ export const detail = async (req: Request, res: Response) => {
     const slugTour = req.params.slugTour;
 
     // console.log(slugTour);
+
+    const tour = await Tour.findOne({
+        where: {
+            slug: slugTour,
+            deleted: false,
+            status: "active"
+        },
+        raw: true
+    });
+
+    if(tour["images"]){
+        tour["images"] = JSON.parse(tour["images"]);
+    }
+
+    tour["price_special"] = tour["price"] * (1 - tour["discount"]/100);
+    tour["price_special"] = parseInt(tour["price_special"]);
     
     res.render("client/pages/tours/detail", {
-        pageTitle: "Chi tiết tour"
+        pageTitle: "Chi tiết tour",
+        tour: tour
     });
 }
