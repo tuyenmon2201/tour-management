@@ -6,7 +6,6 @@ dotenv.config();
 import sequelize from "./config/database";
 sequelize
 
-import Tour from "./models/tour.model";
 import { routesClient } from "./routes/client/index.route";
 
 const app: Express = express();
