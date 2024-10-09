@@ -72,6 +72,23 @@ if(formAddToCart){
 }
 // Het gio hang
 
+// Delete product in cart
+const deleteItemInCart = () => {
+  const listButtonDelete = document.querySelectorAll("[btn-delete]");
+  if(listButtonDelete.length > 0){
+    listButtonDelete.forEach(button => {
+      button.addEventListener("click", () => {
+        const tourId = button.getAttribute("btn-delete");
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        const newCart = cart.filter(item => item.tourId != tourId);
+        localStorage.setItem("cart", JSON.stringify(newCart));
+        window.location.reload();
+      })
+    })
+  }
+}
+// End delete product in cart
+
 // Draw tour to cart
 const tableCart = document.querySelector("[table-cart]");
 if(tableCart){
@@ -113,6 +130,8 @@ if(tableCart){
 
       const totalPrice = document.querySelector("[total-price]");
       totalPrice.innerHTML = data.total.toLocaleString();
+
+      deleteItemInCart();
 
     })
 }
