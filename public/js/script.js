@@ -24,21 +24,21 @@ if(formAddToCart){
     const tourId = parseInt(formAddToCart.getAttribute("tour-id"));
     const quantity = parseInt(formAddToCart.quantity.value);
 
-    if(tourId && quantity.length > 0){
+    if(tourId && quantity > 0){
       const cart = JSON.parse(localStorage.getItem("cart"));
 
       const existTour = cart.find(item => item.tourId == tourId);
 
       if(existTour){
         existTour.quantity += quantity;
-      } else{
+      } else {
         cart.push({
           tourId: tourId,
           quantity: quantity
         });
       }
 
-      localStorage.setItem("cart", JSON.parse(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
 
   })
