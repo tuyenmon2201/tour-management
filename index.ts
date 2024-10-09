@@ -1,4 +1,5 @@
 import express, { Express, Request, Response } from "express";
+import bodyParser from "body-parser";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -12,6 +13,8 @@ const app: Express = express();
 const port: number | string = process.env.PORT || 3003;
 
 app.use(express.static("public"));
+
+app.use(bodyParser.json());
 
 app.set("views", `${__dirname}/views`);
 app.set("view engine", "pug");
