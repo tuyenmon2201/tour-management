@@ -22,6 +22,17 @@ const alertAddCartSusscess = () => {
 }
 // End alert-add-cart-susscess
 
+// Show product count for mini cart
+const showMiniCart = () => {
+  const miniCart = document.querySelector("[mini-cart]");
+  if(miniCart){
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    miniCart.innerHTML = cart.length;
+  }
+}
+showMiniCart();
+// End show product count for mini cart
+
 // Gio hang
 const cart = localStorage.getItem("cart");
 if(!cart){
@@ -51,8 +62,10 @@ if(formAddToCart){
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      
+
       alertAddCartSusscess();
+
+      showMiniCart();
     }
 
   })
