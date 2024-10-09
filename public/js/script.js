@@ -89,6 +89,30 @@ const deleteItemInCart = () => {
 }
 // End delete product in cart
 
+// Update quantity in cart
+const updateQuantityItemInCart = () => {
+  const listInputQuantity = document.querySelectorAll("input[name='quantity']");
+  if(listInputQuantity.length > 0){
+    listInputQuantity.forEach(input => {
+      input.addEventListener("change", () => {
+        const tourId = parseInt(input.getAttribute("item-id"));
+        const quantity = parseInt(input.value);
+
+        if(tourId && quantity > 0){
+          const cart = JSON.parse(localStorage.getItem("cart"));
+          const itemUpdate = cart.find(item => item.tourId == tourId);
+          if(itemUpdate){
+            itemUpdate.quantity = quantity;
+            localStorage.setItem("cart", JSON.stringify(cart));
+            window.location.reload();
+          }
+        }
+      })
+    })
+  }
+}
+// End update quantity in cart
+
 // Draw tour to cart
 const tableCart = document.querySelector("[table-cart]");
 if(tableCart){
@@ -132,6 +156,8 @@ if(tableCart){
       totalPrice.innerHTML = data.total.toLocaleString();
 
       deleteItemInCart();
+
+      updateQuantityItemInCart();
 
     })
 }
