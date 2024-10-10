@@ -162,3 +162,35 @@ if(tableCart){
     })
 }
 // End draw tour to cart
+
+// Order tour
+const formOrder = document.querySelector("[form-order]");
+if(formOrder){
+  formOrder.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const cart = JSON.parse(localStorage.getItem("cart"));
+
+    const dataFinal = {
+      info: {
+        fullName: formOrder.fullName.value,
+        phone: formOrder.phone.value,
+        note: formOrder.note.value
+      },
+      cart: cart
+    };
+
+    fetch("/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dataFinal)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+    })
+  })
+}
+// End order tour
