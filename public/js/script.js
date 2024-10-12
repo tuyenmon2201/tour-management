@@ -191,7 +191,7 @@ if(formOrder){
     .then(data => {
       if(data.code == 200){
         localStorage.setItem("cart", JSON.stringify([]));
-        window.location.href = `/order/success?/${data.orderCode}`;
+        window.location.href = `/order/success/${data.orderCode}`;
       }
     })
   })
