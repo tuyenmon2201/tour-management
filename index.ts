@@ -16,6 +16,9 @@ const port: number | string = process.env.PORT || 3003;
 
 app.use(express.static("public"));
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(bodyParser.json());
 
 app.set("views", `${__dirname}/views`);
