@@ -1,0 +1,10 @@
+const fs = require('fs-extra');
+
+// Async with promises:
+fs.copy('views', 'dist/views')
+    .then(() => console.log('success: dist/views!'))
+    .catch(err => console.error(err))
+
+fs.copy('public', 'dist/public')
+    .then(() => console.log('success: dist/public!'))
+    .catch(err => console.error(err))
