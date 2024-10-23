@@ -14,7 +14,7 @@ const index_route_2 = require("./routes/admin/index.route");
 const system_1 = require("./config/system");
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3003;
-app.use(express_1.default.static("public"));
+app.use(express_1.default.static(`${__dirname}/public`));
 app.use(body_parser_1.default.urlencoded({ extended: false }));
 app.use(body_parser_1.default.json());
 app.set("views", `${__dirname}/views`);
