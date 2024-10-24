@@ -53,7 +53,7 @@ if(formAddToCart){
       const existTour = cart.find(item => item.tourId == tourId);
 
       if(existTour){
-        existTour.quantity += quantity;
+        existTour.quantity = existTour.quantity + quantity;
       } else {
         cart.push({
           tourId: tourId,
