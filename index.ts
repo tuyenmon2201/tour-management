@@ -7,6 +7,8 @@ dotenv.config();
 import sequelize from "./config/database";
 sequelize
 
+import cors from "cors";
+
 import { routesClient } from "./routes/client/index.route";
 import { adminRoutes } from "./routes/admin/index.route";
 import { systemConfig } from "./config/system";
@@ -27,6 +29,7 @@ app.set("view engine", "pug");
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
 routesClient(app);
 adminRoutes(app);
+app.use(cors());
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
